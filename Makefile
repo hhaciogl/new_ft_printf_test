@@ -1,9 +1,10 @@
 SOURCE=$(wildcard ./tests/*.c)
+LIB_SOURCE = lib/libftprintf.a lib/ft_printf.c lib/ft_printf.h
 
 all: run
 
-run: $(SOURCE) lib/libftprintf.a
-	@cc main.c $^ -o $@ -Werror -Wextra -Wall
+run: $(SOURCE) $(LIB_SOURCE)
+	@cc main.c $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall
 	./run
 
 copy:
