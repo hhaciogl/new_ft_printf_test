@@ -18,8 +18,11 @@ clean:
 fclean:
 	cd ./lib && $(MAKE) fclean;
 
+norm:
+	norminette ./test/*.c
+	cd ./lib && $(MAKE) norm
+
 push:
-	set -e
 	git add .
 	git commit -m "$(M)"
 	git push origin master
