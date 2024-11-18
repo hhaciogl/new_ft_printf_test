@@ -5,6 +5,7 @@ run: $(SOURCE) lib/libftprintf.a
 	./run
 
 copy:
+	rm -fr ./lib
 	cp -r ../$(LIB) .
 	mv ./$(LIB) ./lib
 
@@ -16,8 +17,6 @@ clean:
 
 fclean:
 	cd ./lib && $(MAKE) fclean;
-
-fclean:
 
 push:
 	set -e
