@@ -1,2 +1,4 @@
 Test Cases for ft_printf
-Add your source code and then `make`
+Add your source code
+`LIB="folder_name" make copy`
+ and then `make` to build and report the code test result.
