@@ -1,7 +1,9 @@
 SOURCE=$(wildcard ./tests/*.c)
 
+all: run
+
 run: $(SOURCE) lib/libftprintf.a
-	@cc $^ -o $@ -L./test -lft -Werror -Wextra -Wall
+	@cc main.c $^ -o $@ -Werror -Wextra -Wall
 	./run
 
 copy:
@@ -14,16 +16,16 @@ lib/libftprintf.a:
 
 clean:
 	cd ./lib && $(MAKE) clean;
+	rm -f ./tests/*.o
 
-fclean:
+fclean: clean
 	cd ./lib && $(MAKE) fclean;
-
-norm:
-	norminette ./test/*.c
-	cd ./lib && $(MAKE) norm
+	rm -f run 
 
 push:
 	git add .
 	git commit -m "$(M)"
 	git push origin master
 	cd ./lib && $(MAKE) push
+
+.PHONY: push fclean clean copy alls
