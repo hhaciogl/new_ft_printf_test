@@ -8,50 +8,74 @@ extern char my_buff[1024];
 void test_ft_printf_with_arg_hello()
 {
     strcpy(my_buff, "");
-    ft_printf("hello");
-    char *actual = my_buff;
-    TEST(strcmp(actual, "hello") == 0, __func__);
-    printf("Actual:%s\n", actual);
+    int actual_return;
+	int expect_return;
+	char *actual;
+	char *expect;
+	int condition;
+	
+
+	actual_return = ft_printf("hello");
+    actual = my_buff;
+    printf("Actual:%s writes: %i bytes\n", actual, actual_return);
     printf("Expect:");
-    printf("hello");
+    expect_return = printf("hello");
+	printf(" writes: %i bytes", expect_return);
     printf("\n");
+	expect = "hello";
+	condition = strcmp(actual, expect) == 0 && expect_return == actual_return;
+	TEST(condition, __func__);
 }
 
-
-void test_ft_printf_with_arg_hello_Fs_world()
+void test_ft_printf_with_arg_hello0Fs_world()
 {
     strcpy(my_buff, "");
-    ft_printf("hello %s", "world");
-    char *actual = my_buff;
-    TEST(strcmp(actual, "hello world") == 0, __func__);
-    printf("Actual:%s\n", actual);
+    int actual_return;
+	int expect_return;
+	char *actual;
+	char *expect;
+	int condition;
+	
+
+	actual_return = ft_printf("hello %s", "world");
+    actual = my_buff;
+    printf("Actual:%s writes: %i bytes\n", actual, actual_return);
     printf("Expect:");
-    printf("hello %s", "world");
+    expect_return = printf("hello %s", "world");
+	printf(" writes: %i bytes", expect_return);
     printf("\n");
+	expect = "hello world";
+	condition = strcmp(actual, expect) == 0 && expect_return == actual_return;
+	TEST(condition, __func__);
 }
 
-void test_ft_printf_with_arg_num_Fi_25()
+void test_ft_printf_with_arg_num0Fi_42()
 {
     strcpy(my_buff, "");
-    ft_printf("num %i", 25);
-    char *actual = my_buff;
-    TEST(strcmp(actual, "num 25") == 0, __func__);
-    printf("Actual:%s\n", actual);
+    int actual_return;
+	int expect_return;
+	char *actual;
+	char *expect;
+	int condition;
+	
+
+	actual_return = ft_printf("num %i", 42);
+    actual = my_buff;
+    printf("Actual:%s writes: %i bytes\n", actual, actual_return);
     printf("Expect:");
-    printf("num %i", 25);
+    expect_return = printf("num %i", 42);
+	printf(" writes: %i bytes", expect_return);
     printf("\n");
+	expect = "num 42";
+	condition = strcmp(actual, expect) == 0 && expect_return == actual_return;
+	TEST(condition, __func__);
 }
-
-
-
-
-
-
 
 void test_ft_printf()
 {
     puts(__func__);
     test_ft_printf_with_arg_hello();
-    test_ft_printf_with_arg_hello_Fs_world();
-    test_ft_printf_with_arg_num_Fi_25();
+	test_ft_printf_with_arg_hello0Fs_world();
+	test_ft_printf_with_arg_num0Fi_42();
+
 }
