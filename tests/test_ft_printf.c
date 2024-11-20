@@ -71,11 +71,32 @@ void test_ft_printf_with_arg_num0Fi_42()
 	TEST(condition, __func__);
 }
 
+void test_ft_printf_with_arg_FF()
+{
+    strcpy(my_buff, "");
+    int actual_return;
+	int expect_return;
+	char *actual;
+	char *expect;
+	int condition;
+	
+
+	actual_return = ft_printf("%%");
+    actual = my_buff;
+    printf("Actual:%s writes: %i bytes\n", actual, actual_return);
+    printf("Expect:");
+    expect_return = printf("%%");
+	printf(" writes: %i bytes", expect_return);
+    printf("\n");
+	expect = "%";
+	condition = strcmp(actual, expect) == 0 && expect_return == actual_return;
+	TEST(condition, __func__);
+}
 void test_ft_printf()
 {
     puts(__func__);
     test_ft_printf_with_arg_hello();
 	test_ft_printf_with_arg_hello0Fs_world();
 	test_ft_printf_with_arg_num0Fi_42();
-
+	test_ft_printf_with_arg_FF();
 }
