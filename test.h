@@ -25,6 +25,6 @@
 #define log_size_t(var) printf(#var " = %zu\n", var)
 #define log_uint(var) printf(#var " = %u\n", var)
 
-void test_libftprintf(void);
+void test_ft_printf(void);
 
 #endif
