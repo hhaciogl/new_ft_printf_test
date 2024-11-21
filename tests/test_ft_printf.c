@@ -92,6 +92,8 @@ void test_ft_printf_with_arg_FF()
 	condition = strcmp(actual, expect) == 0 && expect_return == actual_return;
 	TEST(condition, __func__);
 }
+
+
 void test_ft_printf()
 {
     puts(__func__);
