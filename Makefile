@@ -1,17 +1,18 @@
-SOURCE=$(wildcard ./tests/*.c)
+SOURCE= main.c ./tests/test_ft_printf.c ./tests/my_write.c
 LIB_SOURCE = lib/libftprintf.a lib/ft_printf.c lib/ft_printf.h
 
-all: run test
+all: run
 
 run: $(SOURCE) $(LIB_SOURCE)
-	@gcc main.c $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write
+	gcc $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write
+	./run
 
 copy:
 	rm -fr ./lib
 	cp -r ../$(LIB) .
 	mv ./$(LIB) ./lib
 
-lib/libftprintf.a:
+lib/libftprintf.a: lib/ft_printf.c lib/ft_printf.h
 	cd ./lib && $(MAKE)
 
 clean:
@@ -21,10 +22,6 @@ clean:
 fclean: clean
 	cd ./lib && $(MAKE) fclean;
 	rm -f run 
-
-test:
-	./run
-	
 
 push:
 	git add .
