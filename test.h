@@ -12,6 +12,7 @@
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
+#define DEBUG 1
 #define TEST(condition, msg) \
     do { \
         if (condition) \
@@ -28,7 +29,7 @@
 #define log_uint(var) printf(#var " = %u\n", var)
 #define DESCRIBE(message, func) ({ \
     int result = func(); \
-    if (result == 1) { \
+    if (result == 0) { \
         printf("\033[38;5;196m%s\033[0m\n", message);\
     } else { \
         printf("\033[38;5;46m%s\033[0m\n", message);\

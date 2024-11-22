@@ -3,13 +3,13 @@
 
 extern char my_buff[1024];
 
-int test_ft_printf(int line_no, const char *format, void *arg, void *exp_sout, void *exp);
+int test_ft_printf(char *line_no, const char *format, void *arg, char *exp_sout, int exp);
 int prints_a_single_char(void);
 
 void tests_ft_printf()
 {
     puts(__func__);
-    XDESCRIBE("%c Prints a single character");
+    DESCRIBE("%c Prints a single character", prints_a_single_char);
     XDESCRIBE("%s Prints a string (as defined by the common C convention)");
     XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format");
     XDESCRIBE("%d Prints a decimal (base 10) number");
@@ -21,21 +21,39 @@ void tests_ft_printf()
     return;
 }
 
-int test_ft_printf(int line_no, const char *format, void *arg, void *exp_sout, void *exp)
+
+int prints_a_single_char(void)
+{
+    return (
+        test_ft_printf("28", "This is a char: %c", (void *)'z', "This is a char: z", 17) &&
+        test_ft_printf("29", "This is a char: %c", (void *)'%', "This is a char: %", 17) &&
+        test_ft_printf("30", "This is \0a char: %c", (void *)'%', "This is ", 8) &&
+        test_ft_printf("31", "[%c]", (void *)'\0', "[]", 3) &&
+        test_ft_printf("32", "[%c]", (void *)'\n', "[\n]", 3) &&
+        1
+    );
+}
+
+
+int test_ft_printf(char *line_no, const char *format, void *arg, char *exp_sout, int exp)
 {
     char *act_sout;
     int act;
     int cond;
-
+    bzero(my_buff, 1024);
     
-    
-    puts("[expected] <-> [actual]");
-    printf("[%s] <-> [%s]\n", exp_sout, act_sout);
-    printf("[%i] <-> [%i]\n", exp, act);
-    puts("");
-    
-
-
-
-    return (1);
+    act = ft_printf(format, arg);
+    act_sout = my_buff;
+    cond = strcmp(act_sout, exp_sout) == 0 && act == exp;
+    if (cond == 0 || DEBUG)
+    {
+        TEST(cond, line_no);
+        printf("%s\n", "[expect]"); 
+        printf("%s\n", "<actual>");
+        printf("[%s]\n", exp_sout);
+        printf("<%s>\n", act_sout);
+        printf("[%i]\n", exp);
+        printf("<%i>\n", act);
+    }
+    return (cond);
 }
