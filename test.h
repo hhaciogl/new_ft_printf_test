@@ -16,7 +16,7 @@
 #define TEST(condition, msg) \
     do { \
         if (condition) \
-            printf(GREEN "** [OK] line =>%s from %s\n" RESET, msg, __FILE__); \
+            printf(GREEN "** [OK] line =>%s from %s\n" RESET, msg,  __FILE__); \
         else \
             printf(RED "xx FAIL line =>%s from %s\n" RESET, msg, __FILE__); \
     } while (0)
