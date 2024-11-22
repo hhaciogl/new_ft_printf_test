@@ -5,7 +5,6 @@ all: run
 
 run: $(SOURCE) $(LIB_SOURCE)
 	gcc $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write
-	./run
 
 lib/libftprintf.a: lib/ft_printf.c lib/ft_printf.h
 	cd ./lib && $(MAKE)
@@ -17,5 +16,8 @@ clean:
 fclean: clean
 	cd ./lib && $(MAKE) fclean;
 	rm -f run 
+
+test:
+	./run
 
 .PHONY: fclean clean copy all test

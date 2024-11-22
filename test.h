@@ -12,13 +12,13 @@
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
-#define DEBUG 1
+#define DEBUG 0
 #define TEST(condition, msg) \
     do { \
         if (condition) \
-            printf(GREEN "** [OK] %s\n" RESET, msg); \
+            printf(GREEN "** [OK] line =>%s from %s\n" RESET, msg, __FILE__); \
         else \
-            printf(RED "xx FAIL %s: \n" RESET, msg); \
+            printf(RED "xx FAIL line =>%s from %s\n" RESET, msg, __FILE__); \
     } while (0)
 #define log_int(var) printf(#var " = %d\n", var)
 #define log_char(var) printf(#var " = %c\n", var)

@@ -5,12 +5,13 @@ extern char my_buff[1024];
 
 int test_ft_printf(char *line_no, const char *format, void *arg, char *exp_sout, int exp);
 int prints_a_single_char(void);
+int prints_a_string(void);
 
 void tests_ft_printf()
 {
     puts(__func__);
     DESCRIBE("%c Prints a single character", prints_a_single_char);
-    XDESCRIBE("%s Prints a string (as defined by the common C convention)");
+    DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
     XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format");
     XDESCRIBE("%d Prints a decimal (base 10) number");
     XDESCRIBE("%i Prints an integer in base 10");
@@ -21,7 +22,6 @@ void tests_ft_printf()
     return;
 }
 
-
 int prints_a_single_char(void)
 {
     return (
@@ -29,7 +29,15 @@ int prints_a_single_char(void)
         test_ft_printf("29", "This is a char: %c", (void *)'%', "This is a char: %", 17) &&
         test_ft_printf("30", "This is \0a char: %c", (void *)'%', "This is ", 8) &&
         test_ft_printf("31", "[%c]", (void *)'\0', "[]", 3) &&
-        test_ft_printf("32", "[%c]", (void *)'\n', "[\n]", 3) &&
+        test_ft_printf("32", "[%c]", (void *)'\n', "[\n]", 3)
+    );
+}
+int prints_a_string(void)
+{
+    return (
+        test_ft_printf("38", "This is a string: %s", (void *)"str", "This is a string: str", 21) &&
+        test_ft_printf("39", "This is a string: %s", (void *)"st\0r", "This is a string: st", 20) &&
+        test_ft_printf("40", "This is an empty string:%s", (void *)"", "This is an empty string:", 24) &&
         1
     );
 }
