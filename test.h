@@ -1,3 +1,6 @@
+// simple code for repeated commands
+// while sleep 2; do clear; make&&make test; done
+
 #ifndef TEST_H
 # define TEST_H
 #include <stdio.h>
