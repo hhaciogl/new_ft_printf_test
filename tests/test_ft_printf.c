@@ -3,6 +3,7 @@
 
 extern char my_buff[1024];
 
+int test_ft_printf(int line_no, const char *format, void *arg, void *exp_sout, void *exp);
 int prints_a_single_char(void);
 
 void tests_ft_printf()
@@ -20,20 +21,19 @@ void tests_ft_printf()
     return;
 }
 
-int test_ft_printf(const char *format, ... )
+int test_ft_printf(int line_no, const char *format, void *arg, void *exp_sout, void *exp)
 {
-    char expect[1024];
-    char *actual;
-    int expect_1;
-    int actual_1;
-    int condition;
-    va_list args;
-    va_start(args, format);
+    char *act_sout;
+    int act;
+    int cond;
 
-    sprintf(expect, format, args);
     
     
-
+    puts("[expected] <-> [actual]");
+    printf("[%s] <-> [%s]\n", exp_sout, act_sout);
+    printf("[%i] <-> [%i]\n", exp, act);
+    puts("");
+    
 
 
 
