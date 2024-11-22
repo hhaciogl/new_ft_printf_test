@@ -23,10 +23,4 @@ fclean: clean
 	cd ./lib && $(MAKE) fclean;
 	rm -f run 
 
-push:
-	git add .
-	git commit -m "$(M)"
-	git push origin master
-	cd ./lib && $(MAKE) push
-
-.PHONY: push fclean clean copy all test norm
+.PHONY: fclean clean copy all test
