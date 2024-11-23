@@ -35,9 +35,17 @@ int prints_a_percent_sign(void)
         1
 	);
 }
+int prints_a_decimal_or_an_integer(void)
+{
+	return (//2147483647
+		test_ft_printf("41", "%d", (void *)23, NULL, "23", 2) &&
+		test_ft_printf("42", "%d", (void *)2147483647, NULL, "2147483647", 10) &&
+		test_ft_printf("43", "%d", (void *)2147483648, NULL, "2147483647", 10) &&
+		1
+	);
+}
 
 
-// shared files for testing
 int test_ft_printf(char *line_no, const char *format, void *arg, void *arg1, char *exp_sout, int exp)
 {
     char *act_sout;
@@ -67,7 +75,7 @@ void tests_ft_printf()
     DESCRIBE("%c Prints a single character", prints_a_single_char);
     DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
     XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format");
-    XDESCRIBE("%d Prints a decimal (base 10) number");
+    DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
     XDESCRIBE("%i Prints an integer in base 10");
     XDESCRIBE("%u Prints an unsigned decimal (base 10) number");
     XDESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format");
