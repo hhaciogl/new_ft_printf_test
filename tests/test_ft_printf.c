@@ -24,7 +24,20 @@ int prints_a_string(void)
     );
 }
 
+int prints_a_percent_sign(void)
+{
+	return (
+		test_ft_printf("30", "%%", (void *)NULL, NULL, "%", 1) &&
+		test_ft_printf("31", "%%", (void *)"%", NULL, "%", 1) &&
+		test_ft_printf("32", "%%", (void *)'%', NULL, "%", 1) &&
+		test_ft_printf("33", "%z", (void *)"%", NULL, "", -1) &&
+		test_ft_printf("34", "%", (void *)"%", NULL, "", -1) &&
+        1
+	);
+}
 
+
+// shared files for testing
 int test_ft_printf(char *line_no, const char *format, void *arg, void *arg1, char *exp_sout, int exp)
 {
     char *act_sout;
@@ -59,6 +72,6 @@ void tests_ft_printf()
     XDESCRIBE("%u Prints an unsigned decimal (base 10) number");
     XDESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format");
     XDESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format");
-    XDESCRIBE("%% Prints a percent sign");
+    DESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
     return;
 }
