@@ -3,7 +3,7 @@ LIB_SOURCE = lib/libftprintf.a lib/ft_printf.c lib/ft_printf.h
 
 all: run
 
-run: $(SOURCE) $(LIB_SOURCE)
+run: $(SOURCE) $(LIB_SOURCE) test.h
 	gcc $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write
 
 lib/libftprintf.a: lib/ft_printf.c lib/ft_printf.h
