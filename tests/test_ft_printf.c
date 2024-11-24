@@ -59,9 +59,36 @@ int prints_an_unsigned_decimal(void)
 }
 
 int prints_a_low_hex(void)
-{printf("%x\n",45);
+{
     return (
-        test_ft_printf("56", "%x", (void *)45, NULL, "45", 2) &&
+        test_ft_printf("64", "%x", (void *)-45, NULL, "ffffffd3", 8) &&
+        test_ft_printf("65", "%x", (void *)INT_MAX, NULL, "7fffffff", 8) &&
+        test_ft_printf("66", "%x", (void *)UINT_MAX, NULL, "ffffffff", 8) &&
+        test_ft_printf("67", "%x", (void *)UINT_MAX+1, NULL, "0", 1) &&
+        test_ft_printf("68", "%x", (void *)0, NULL, "0", 1) &&
+		1
+    );
+}
+
+int prints_a_up_hex(void)
+{
+    return (
+        test_ft_printf("76", "%X", (void *)-45, NULL, "FFFFFFD3", 8) &&
+        test_ft_printf("77", "%X", (void *)INT_MAX, NULL, "7FFFFFFF", 8) &&
+        test_ft_printf("78", "%X", (void *)UINT_MAX, NULL, "FFFFFFFF", 8) &&
+        test_ft_printf("79", "%X", (void *)UINT_MAX+1, NULL, "0", 1) &&
+        test_ft_printf("80", "%X", (void *)0, NULL, "0", 1) &&
+		1
+    );
+}
+
+int prints_a_ptr(void)
+{   int a = 4; char buf[30]; int size = sprintf(buf, "%p", &a);
+    return (
+        test_ft_printf("88", "%p", (void *)0, NULL, "(nil)", 5) &&
+        test_ft_printf("89", "%p", (void *)ULONG_MAX, NULL, "0xffffffffffffffff", 18) &&
+        test_ft_printf("90", "%p", (void *)LONG_MIN, NULL, "0x8000000000000000", 18) &&
+        test_ft_printf("91", "%p", (void *)&a, NULL, buf, size) &&
 		1
     );
 }
@@ -95,12 +122,12 @@ void tests_ft_printf()
     puts(__func__);
     DESCRIBE("%c Prints a single character", prints_a_single_char);
     DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
-    XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format");
+    DESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format", prints_a_ptr);
     DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
     DESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
     DESCRIBE("%u Prints an unsigned decimal (base 10) number", prints_an_unsigned_decimal);
     DESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format", prints_a_low_hex);
-    XDESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format");
+    DESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format", prints_a_up_hex);
     DESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
     return;
 }
