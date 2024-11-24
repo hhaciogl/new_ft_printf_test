@@ -48,11 +48,20 @@ int prints_a_decimal_or_an_integer(void)
 }
 
 int prints_an_unsigned_decimal(void)
-{   unsigned int a = INT_MAX + 1;
-    printf("%u\n", a);
+{
     return (
 		test_ft_printf("53", "%u", (void *)INT_MIN, NULL, "2147483648", 10) &&
         test_ft_printf("54", "%u", (void *)INT_MAX, NULL, "2147483647", 10) &&
+        test_ft_printf("55", "%u", (void *)0, NULL, "0", 1) &&
+        test_ft_printf("56", "%u", (void *)45, NULL, "45", 2) &&
+		1
+    );
+}
+
+int prints_a_low_hex(void)
+{printf("%x\n",45);
+    return (
+        test_ft_printf("56", "%x", (void *)45, NULL, "45", 2) &&
 		1
     );
 }
@@ -90,7 +99,7 @@ void tests_ft_printf()
     DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
     DESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
     DESCRIBE("%u Prints an unsigned decimal (base 10) number", prints_an_unsigned_decimal);
-    XDESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format");
+    DESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format", prints_a_low_hex);
     XDESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format");
     DESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
     return;
