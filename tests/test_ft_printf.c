@@ -1,5 +1,7 @@
 #include "../test.h"
 #include "../lib/ft_printf.h"
+#include <stdio.h>
+#include <limits.h>
 
 extern char my_buff[1024];
 int test_ft_printf(char *line_no, const char *format, void *arg, void *arg1, char *exp_sout, int exp);
@@ -37,12 +39,22 @@ int prints_a_percent_sign(void)
 }
 int prints_a_decimal_or_an_integer(void)
 {
-	return (//2147483647
+	return (
 		test_ft_printf("41", "%d", (void *)23, NULL, "23", 2) &&
 		test_ft_printf("42", "%d", (void *)2147483647, NULL, "2147483647", 10) &&
-		test_ft_printf("43", "%d", (void *)2147483648, NULL, "2147483647", 10) &&
+		test_ft_printf("43", "%d", (void *)INT_MIN, NULL, "-2147483648", 11) &&
 		1
 	);
+}
+
+int prints_an_unsigned_decimal(void)
+{   unsigned int a = INT_MAX + 1;
+    printf("%u\n", a);
+    return (
+		test_ft_printf("53", "%u", (void *)INT_MIN, NULL, "2147483648", 10) &&
+        test_ft_printf("54", "%u", (void *)INT_MAX, NULL, "2147483647", 10) &&
+		1
+    );
 }
 
 
@@ -76,8 +88,8 @@ void tests_ft_printf()
     DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
     XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format");
     DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
-    XDESCRIBE("%i Prints an integer in base 10");
-    XDESCRIBE("%u Prints an unsigned decimal (base 10) number");
+    DESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
+    DESCRIBE("%u Prints an unsigned decimal (base 10) number", prints_an_unsigned_decimal);
     XDESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format");
     XDESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format");
     DESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
