@@ -5,23 +5,23 @@
 
 extern char my_buff[1024];
 int test_ft_printf(char *line_no, const char *format, void *arg, char *arg1, char *exp_sout, int exp);
-
 int prints_a_single_char(void)
 {
     return (
-        test_ft_printf("10","This is a char: %c", (void *)'z', "z", "This is a char: z", 17) &&
-        test_ft_printf("11","This is a char: %c", (void *)'%', "%", "This is a char: %", 17) &&
-        test_ft_printf("12","This is \0a char: %c", (void *)'%', "%", "This is ", 8) &&
-        test_ft_printf("13","[%c]", (void *)'\0', "\\0", "[]", 3) &&
-        test_ft_printf("14","[%c]", (void *)'\n', "\\n", "[\n]", 3)
+        test_ft_printf("11","This is a char: %c", (void *)'z', "z", "This is a char: z", 17) &&
+        test_ft_printf("12","This is a char: %c", (void *)'%', "%", "This is a char: %", 17) &&
+        test_ft_printf("13","This is \0a char: %c", (void *)'%', "%", "This is ", 8) &&
+        test_ft_printf("14","[%c]", (void *)'\0', "\\0", "[]", 3) &&
+        test_ft_printf("15","[%c]", (void *)'\n', "\\n", "[\n]", 3)
     );
 }
 int prints_a_string(void)
-{
+{ char *a = NULL;
     return (
-        test_ft_printf("20","This is a string: %s", (void *)"str", "str", "This is a string: str", 21) &&
-        test_ft_printf("21","This is a string: %s", (void *)"st\0r", "st\\0r", "This is a string: st", 20) &&
-        test_ft_printf("22", "This is an empty string:%s", (void *)"", "", "This is an empty string:", 24)
+        test_ft_printf("21","This is a string: %s", (void *)"str", "str", "This is a string: str", 21) &&
+        test_ft_printf("22","This is a string: %s", (void *)"st\0r", "st\\0r", "This is a string: st", 20) &&
+        test_ft_printf("23", "This is an empty string:%s", (void *)"", "", "This is an empty string:", 24) &&
+        test_ft_printf("24", "NULL %s NULL", a, "NULL", "NULL (null) NULL", 16)
     );
 }
 int prints_a_percent_sign(void)
