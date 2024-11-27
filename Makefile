@@ -4,7 +4,7 @@ LIB_SOURCE = lib/libftprintf.a lib/ft_printf.c lib/ft_printf.h
 all: run
 
 run: $(SOURCE) $(LIB_SOURCE) test.h
-	cc $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write -fPIE
+	cc $(SOURCE) lib/libftprintf.a -o $@ -Werror -Wextra -Wall -Wl,--wrap=write
 
 lib/libftprintf.a: lib/ft_printf.c lib/ft_printf.h
 	cd ./lib && $(MAKE)
@@ -15,7 +15,7 @@ clean:
 
 fclean: clean
 	cd ./lib && $(MAKE) fclean;
-	rm -f run 
+	rm -f run
 
 test:
 	./run

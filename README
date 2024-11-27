@@ -1,4 +1,7 @@
 Test Cases for ft_printf
-Add your source code
-`LIB="folder_name" make copy`
- and then `make` to build and report the code test result.
+
+Rename your source code with `lib`
+then add it int to the project
+run `make` then `make test` to see result
+alternatively you can use simple watch with below code
+`while sleep 2; do clear; make&&make test; done`
