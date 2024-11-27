@@ -20,4 +20,7 @@ fclean: clean
 test:
 	./run
 
+watch: run
+	while sleep 2; do clear; $(MAKE)&& $(MAKE) test; done
+
 .PHONY: fclean clean copy all test
