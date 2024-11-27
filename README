@@ -3,5 +3,5 @@ Test Cases for ft_printf
 Rename your source code with `lib`
 then add it int to the project
 run `make` then `make test` to see result
-alternatively you can use simple watch with below code
-`while sleep 2; do clear; make&&make test; done`
+alternatively you can use simple watch with
+`make watch`
