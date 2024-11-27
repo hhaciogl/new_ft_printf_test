@@ -16,7 +16,7 @@
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
-#define DEBUG 0
+#define DEBUG 1
 #define TEST(condition, msg) \
     do { \
         if (condition) \

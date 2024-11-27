@@ -93,6 +93,16 @@ int prints_a_ptr(void)
     );
 }
 
+int prints_flat(void)
+{  //int a = printf(NULL);puts("");printf
+    return (
+        test_ft_printf("99", "Hello", (void *)0, "NULL", "Hello", 5) &&
+        test_ft_printf("100", "World", (void *)0, "NULL", "World", 5) &&
+        //test_ft_printf("101", NULL, (void *)0, "NULL", "", 5) &&
+		1
+    );
+}
+
 
 int test_ft_printf(char *line_no, const char *format, void *arg, char *arg1, char *exp_sout, int exp)
 {
@@ -119,8 +129,9 @@ int test_ft_printf(char *line_no, const char *format, void *arg, char *arg1, cha
 void tests_ft_printf()
 {
     puts(__func__);
-    DESCRIBE("%c Prints a single character", prints_a_single_char);
+    DESCRIBE("NO % Prints flat string without formaters", prints_flat);
     DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
+    DESCRIBE("%c Prints a single character", prints_a_single_char);
     DESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format", prints_a_ptr);
     DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
     DESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
