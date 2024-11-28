@@ -16,7 +16,7 @@
 #define GREEN "\033[0;32m"
 #define RED "\033[0;31m"
 #define RESET "\033[0m"
-#define DEBUG 1
+#define DEBUG 0
 #define TEST(condition, msg) \
     do { \
         if (condition) \
@@ -39,7 +39,8 @@
         printf("\033[38;5;46m%s\033[0m\n", message);\
     } \
 })
-#define XDESCRIBE(message) do { \
+#define XDESCRIBE(message, func) do { \
+    (void)func; \
     printf("\033[38;5;214m%s\033[0m\n", message); \
 } while(0)
 
