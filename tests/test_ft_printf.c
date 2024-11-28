@@ -33,16 +33,16 @@ int prints_a_percent_sign(void)
 	return (
 		test_ft_printf("30", "%%", (void *)NULL, "NULL", "%", 1) &&
 		test_ft_printf("31", "%%", (void *)"%", "%", "%", 1) &&
-		test_ft_printf("32", "%%", (void *)'%', "%", "%", 1) &&
+		test_ft_printf("32", "%%%%", (void *)'%', "%", "%%", 2) &&
 		test_ft_printf("33", "%z", (void *)"%", "%", "", -1) &&
 		test_ft_printf("34", "%", (void *)"%", "%", "", -1) &&
         1
 	);
 }
 int prints_a_decimal_or_an_integer(void)
-{
+{//int a = printf("%d",2147483647); printf("%i", a);
 	return (
-		test_ft_printf("41", "%d", (void *)23, "23", "23", 2) &&
+		test_ft_printf("41", "abc%dabc", (void *)23, "23", "abc23abc", 8) &&
 		test_ft_printf("42", "%d", (void *)2147483647, "2147483647", "2147483647", 10) &&
 		test_ft_printf("43", "%d", (void *)INT_MIN, "INT_MIN", "-2147483648", 11) &&
 		1
@@ -138,12 +138,12 @@ void tests_ft_printf()
     DESCRIBE("Prints flat string without formaters", prints_flat);
     DESCRIBE("%s Prints a string (as defined by the common C convention)", prints_a_string);
     DESCRIBE("%c Prints a single character", prints_a_single_char);
-    XDESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format", prints_a_ptr);
-    XDESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
-    XDESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
-    XDESCRIBE("%u Prints an unsigned decimal (base 10) number", prints_an_unsigned_decimal);
-    XDESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format", prints_a_low_hex);
-    XDESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format", prints_a_up_hex);
-    XDESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
+    DESCRIBE("%p The void * pointer argument has to be printed in hexadecimal format", prints_a_ptr);
+    DESCRIBE("%d Prints a decimal (base 10) number", prints_a_decimal_or_an_integer);
+    DESCRIBE("%i Prints an integer in base 10", prints_a_decimal_or_an_integer);
+    DESCRIBE("%u Prints an unsigned decimal (base 10) number", prints_an_unsigned_decimal);
+    DESCRIBE("%x Prints a number in hexadecimal (base 16) lowercase format", prints_a_low_hex);
+    DESCRIBE("%X Prints a number in hexadecimal (base 16) uppercase format", prints_a_up_hex);
+    DESCRIBE("%% Prints a percent sign", prints_a_percent_sign);
     return;
 }
